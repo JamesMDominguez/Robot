@@ -2,12 +2,12 @@
 #include "MotorControl.h"
 
 // Motor pins (replace with appropriate pins)
-int motor1pin1 = 25;
-int motor1pin2 = 33;
-int motor2pin1 = 32;
-int motor2pin2 = 27;
-int enablePin = 14;  
-int enablePin2 = 26;
+int motor1pin1 = 14;
+int motor1pin2 = 27;
+int motor2pin1 = 26;
+int motor2pin2 = 25;
+int enablePin = 12;  
+int enablePin2 = 33;
 
 // Speed variables
 int leftSpeed = 225; // values from 0 to 255
