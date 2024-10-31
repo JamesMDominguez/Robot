@@ -9,6 +9,10 @@ int motor2pin2 = 27;
 int enablePin = 14;  
 int enablePin2 = 26;
 
+// Speed variables
+int leftSpeed = 225; // values from 0 to 255
+int rightSpeed = 225; // values from 0 to 255
+
 void setupMotorPins()
 {
     pinMode(motor1pin1, OUTPUT);
@@ -21,7 +25,6 @@ void setupMotorPins()
 
 void forward()
 {
-    int speed = 225;
     Serial.println("Forward");
 
     // Add code to move the car forward
@@ -29,26 +32,24 @@ void forward()
     digitalWrite(motor1pin1, LOW);
     digitalWrite(motor2pin2, HIGH);
     digitalWrite(motor2pin1, LOW);
-    analogWrite(enablePin, speed);
-    analogWrite(enablePin2, speed);
+    analogWrite(enablePin, leftSpeed);
+    analogWrite(enablePin2, rightSpeed);
 }
 
 void backward()
 {
-    int speed = 225;
     Serial.println("backward");
     // Add code to move the car backward
     digitalWrite(motor1pin1, HIGH);
     digitalWrite(motor1pin2, LOW);
     digitalWrite(motor2pin1, HIGH);
     digitalWrite(motor2pin2, LOW);
-    analogWrite(enablePin, speed);
-    analogWrite(enablePin2, speed);
+    analogWrite(enablePin, leftSpeed);
+    analogWrite(enablePin2, rightSpeed);
 }
 
 void right()
 {
-    int speed = 225;
     Serial.println("right");
     // forward movement
     digitalWrite(motor1pin1, LOW);
@@ -56,14 +57,13 @@ void right()
     // reverse movement
     digitalWrite(motor2pin1, HIGH);
     digitalWrite(motor2pin2, LOW);
-    analogWrite(enablePin, speed);
-    analogWrite(enablePin2, speed);
+    analogWrite(enablePin, leftSpeed);
+    analogWrite(enablePin2, rightSpeed);
     // Add code to move the car right
 }
 
 void left()
 {
-    int speed = 225;
     Serial.println("left");
     // Add code to move the car left
     // backward movement
@@ -72,39 +72,36 @@ void left()
     // forward movement
     digitalWrite(motor2pin2, HIGH);
     digitalWrite(motor2pin1, LOW);
-    analogWrite(enablePin, speed);
-    analogWrite(enablePin2, speed);
+    analogWrite(enablePin, leftSpeed);
+    analogWrite(enablePin2, rightSpeed);
 }
 
 void rightForward()
 {
-    int speed = 225;
     Serial.println("Right Forward");
     // Add code to move the car Right Forward
     digitalWrite(motor1pin1, LOW);
     digitalWrite(motor1pin2, HIGH);
     digitalWrite(motor2pin1, LOW);
     digitalWrite(motor2pin2, HIGH);
-    analogWrite(enablePin, speed);
-    analogWrite(enablePin2, (speed / 2));
+    analogWrite(enablePin, leftSpeed);
+    analogWrite(enablePin2, (rightSpeed / 2));
 }
 
 void leftForward()
 {
-    int speed = 225;
     Serial.println("Left Forward");
     // Add code to move the car Left Forward
     digitalWrite(motor1pin1, LOW);
     digitalWrite(motor1pin2, HIGH);
     digitalWrite(motor2pin1, LOW);
     digitalWrite(motor2pin2, HIGH);
-    analogWrite(enablePin, (speed / 2));
-    analogWrite(enablePin2, speed);
+    analogWrite(enablePin, (leftSpeed / 2));
+    analogWrite(enablePin2, rightSpeed);
 }
 
 void rightBackward()
 {
-    int speed = 225;
     Serial.println("Right Backward");
     // Add code to move the car Right Backward
 
@@ -112,22 +109,20 @@ void rightBackward()
     digitalWrite(motor1pin1, HIGH);
     digitalWrite(motor2pin2, LOW);
     digitalWrite(motor2pin1, HIGH);
-    analogWrite(enablePin, speed);
-    analogWrite(enablePin2, (speed / 2));
+    analogWrite(enablePin, leftSpeed);
+    analogWrite(enablePin2, (rightSpeed / 2));
 }
 
 void leftBackward()
 {
-    int speed = 225;
-
     Serial.println("Left Backward");
     // Add code to move the car Left Backward
     digitalWrite(motor1pin2, LOW);
     digitalWrite(motor1pin1, HIGH);
     digitalWrite(motor2pin2, LOW);
     digitalWrite(motor2pin1, HIGH);
-    analogWrite(enablePin, (speed / 2));
-    analogWrite(enablePin2, speed);
+    analogWrite(enablePin, (leftSpeed / 2));
+    analogWrite(enablePin2, rightSpeed);
 }
 
 void stopCar()
