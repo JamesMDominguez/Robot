@@ -9,18 +9,35 @@ int motor2pin2 = 25;
 int enablePin = 12;  
 int enablePin2 = 33;
 
+// ultra sonic sensor pins
+int trigPin = 4;  // Trigger Pin of Ultrasonic Sensor
+int echoPin = 2;  // Echo Pin of Ultrasonic Sensor
+
 // Speed variables
 int leftSpeed = 225; // values from 0 to 255
 int rightSpeed = 225; // values from 0 to 255
 
 void setupMotorPins()
 {
+    Serial.begin(115200);
     pinMode(motor1pin1, OUTPUT);
     pinMode(motor1pin2, OUTPUT);
     pinMode(motor2pin1, OUTPUT);
     pinMode(motor2pin2, OUTPUT);
     pinMode(enablePin, OUTPUT);
     pinMode(enablePin2, OUTPUT);
+    pinMode(trigPin, OUTPUT);
+    pinMode(echoPin, INPUT);
+}
+
+int readDistance() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  long duration = pulseIn(echoPin, HIGH);
+  return duration * 0.034 / 2;
 }
 
 void forward()
@@ -73,55 +90,6 @@ void left()
     digitalWrite(motor2pin2, HIGH);
     digitalWrite(motor2pin1, LOW);
     analogWrite(enablePin, leftSpeed);
-    analogWrite(enablePin2, rightSpeed);
-}
-
-void rightForward()
-{
-    Serial.println("Right Forward");
-    // Add code to move the car Right Forward
-    digitalWrite(motor1pin1, LOW);
-    digitalWrite(motor1pin2, HIGH);
-    digitalWrite(motor2pin1, LOW);
-    digitalWrite(motor2pin2, HIGH);
-    analogWrite(enablePin, leftSpeed);
-    analogWrite(enablePin2, (rightSpeed / 2));
-}
-
-void leftForward()
-{
-    Serial.println("Left Forward");
-    // Add code to move the car Left Forward
-    digitalWrite(motor1pin1, LOW);
-    digitalWrite(motor1pin2, HIGH);
-    digitalWrite(motor2pin1, LOW);
-    digitalWrite(motor2pin2, HIGH);
-    analogWrite(enablePin, (leftSpeed / 2));
-    analogWrite(enablePin2, rightSpeed);
-}
-
-void rightBackward()
-{
-    Serial.println("Right Backward");
-    // Add code to move the car Right Backward
-
-    digitalWrite(motor1pin2, LOW);
-    digitalWrite(motor1pin1, HIGH);
-    digitalWrite(motor2pin2, LOW);
-    digitalWrite(motor2pin1, HIGH);
-    analogWrite(enablePin, leftSpeed);
-    analogWrite(enablePin2, (rightSpeed / 2));
-}
-
-void leftBackward()
-{
-    Serial.println("Left Backward");
-    // Add code to move the car Left Backward
-    digitalWrite(motor1pin2, LOW);
-    digitalWrite(motor1pin1, HIGH);
-    digitalWrite(motor2pin2, LOW);
-    digitalWrite(motor2pin1, HIGH);
-    analogWrite(enablePin, (leftSpeed / 2));
     analogWrite(enablePin2, rightSpeed);
 }
 
