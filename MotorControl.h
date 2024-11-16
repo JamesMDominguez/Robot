@@ -7,6 +7,6 @@ void backward();
 void right();
 void left();
 void stopCar();
-void readDistance();
+int readDistance();
 
 #endif // MOTOR_CONTROL_H
